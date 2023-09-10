@@ -6,6 +6,9 @@
 *.lo
 *.o
 *.obj
+*.gch
+*.pch
+
 
 # Precompiled Headers
 *.gch
@@ -30,3 +33,11 @@
 *.exe
 *.out
 *.app
+
+# IDE Specific folder
+nbproject/
+private/
+
+# Temp
+.dep.inc
+
