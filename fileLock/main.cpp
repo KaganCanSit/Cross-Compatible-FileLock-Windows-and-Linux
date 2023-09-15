@@ -3,6 +3,11 @@
 #include "windowsFileLock.h"
 #include "linuxFileLock.h"
 
+#if defined(__linux) || defined(__linux__)
+#include <memory>
+#include <unistd.h>
+#endif
+
 int main(int argc, char** argv) {
 
     int ret = 0;
@@ -24,7 +29,7 @@ int main(int argc, char** argv) {
 
     ret = fileLock->flLock();
     if (ret != static_cast<int>(FileLockError::OK)) {
-        std::cout << "File Lock Create Failed!" << ret << std::endl;
+        std::cout << "File Lock Create Failed! Error Code: " << ret << std::endl;
         return -1;
     }
     std::cout << "File Lock Success" << std::endl;
@@ -39,7 +44,7 @@ int main(int argc, char** argv) {
 
     ret = fileLock->flUnlock();
     if (ret != static_cast<int>(FileLockError::OK)) {
-        std::cout << "File Lock Unlock Failed!" << ret << std::endl;
+        std::cout << "File Lock Unlock Failed! Error Code: " << ret << std::endl;
         return -1;
     }
     std::cout << "File Lock Unlock Success" << std::endl;
