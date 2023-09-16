@@ -69,5 +69,5 @@ If you would like to contribute, you can follow these steps:
 You can also report existing issues by creating an issue, which can help others identify and fix them.
 
 ## License
-This project is licensed under the MIT License. For details, see the [LICENCE](https://github.com/KaganCanSit/fileLock--Linux-and-Windows/blob/main/README.md)
+This project is licensed under the MIT License. For details, see the [LICENSE](https://github.com/KaganCanSit/Cross-Compatible-FileLock-Windows-and-Linux/blob/main/LICENSE)
 file.
