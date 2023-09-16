@@ -8,13 +8,12 @@
 
 class linuxFileLock : public IFileLock {
 public:
-    linuxFileLock(const std::string& filePath);
-
-    FileLockError flLock() override;
-    FileLockError flUnlock() override;
+	linuxFileLock(const std::string& filePath);
+	FileLockError flLock() override;
+	FileLockError flUnlock() override;
 
 private:
-    int fd;
-    std::string lockFileName;
+	int fd;
+	std::string lockFileName;
 };
 #endif
