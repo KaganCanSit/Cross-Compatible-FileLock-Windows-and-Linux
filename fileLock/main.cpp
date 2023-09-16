@@ -11,7 +11,6 @@
 int main(int argc, char** argv) {
 
 	int ret = 0;
-
 	std::shared_ptr<IFileLock> fileLock;
 
 #if defined(__linux) || defined(__linux__)

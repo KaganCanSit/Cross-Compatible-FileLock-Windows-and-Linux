@@ -1,5 +1,9 @@
 #pragma once
-
+/*
+* You can use this interface to separate File Lock libraries according to different operating system libraries.
+* Override the interface here for each operating system or specific case.
+* In this way, you do not need to use more than one ifdef in a function
+*/
 #ifndef FILELOCK_H
 #define FILELOCK_H
 
