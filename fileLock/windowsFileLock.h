@@ -17,7 +17,7 @@ public:
 	FileLockStatus flUnlock() override;
 
 private:
-	HANDLE handle;
+	HANDLE fd;
 	std::string lockFileName;
 };
 #endif

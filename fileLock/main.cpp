@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
 #endif
 
 	ret = fileLock->flLock();
-	if (ret != static_cast<int>(FileLockError::OK)) {
+	if (ret != static_cast<int>(FileLockStatus::OK)) {
 		std::cout << "File Lock Create Failed! Error Code: " << ret << std::endl;
 		return -1;
 	}
@@ -36,7 +36,7 @@ int main(int argc, char** argv) {
 	std::cout << "Sleep 5 Seconds Done" << std::endl;
 
 	ret = fileLock->flUnlock();
-	if (ret != static_cast<int>(FileLockError::OK)) {
+	if (ret != static_cast<int>(FileLockStatus::OK)) {
 		std::cout << "File Lock Unlock Failed! Error Code: " << ret << std::endl;
 		return -1;
 	}
