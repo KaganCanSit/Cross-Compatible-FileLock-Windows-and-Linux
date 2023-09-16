@@ -49,11 +49,9 @@ To use the code, simply import the header and cpp files into your project as nee
 
 ```shell
 git clone https://github.com/KaganCanSit/fileLock--Linux-and-Windows
-cd fileLock--Linux-and-Windows
-
+cd "Downloads Project Folder"
 cmake .
 make
-
 ./fileLock
 ```
 
