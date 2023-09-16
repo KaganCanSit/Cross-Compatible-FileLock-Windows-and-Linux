@@ -13,7 +13,7 @@
 linuxFileLock::linuxFileLock(const std::string& filePath) : lockFileName(filePath), fd(-1) {
 }
 
-FileLockError linuxFileLock::flLock() {
+FileLockStatus linuxFileLock::flLock() {
 	struct flock fl;
 	fl.l_type = F_WRLCK;
 	fl.l_start = 0;
@@ -23,23 +23,23 @@ FileLockError linuxFileLock::flLock() {
 	fd = open(lockFileName.c_str(), O_WRONLY | O_CREAT, 0666);
 	if (fd == -1) {
 		std::cerr << "File Open Error: " << strerror(errno) << std::endl;
-		return FileLockError::FILE_COULD_NOT_BE_OPENED;
+		return FileLockStatus::FILE_COULD_NOT_BE_OPENED;
 	}
 
 	if (fcntl(fd, F_SETLK, &fl) == -1) {
 		close(fd);
 		if (errno == EACCES || errno == EAGAIN) {
 			std::cerr << "The file is used by another process." << strerror(errno) << std::endl;
-			return FileLockError::ALREADY_LOCKED;
+			return FileLockStatus::ALREADY_LOCKED;
 		}
 		std::cerr << "File Lock Error: " << strerror(errno) << std::endl;
-		return FileLockError::FAILED_TO_LOCK;
+		return FileLockStatus::FAILED_TO_LOCK;
 	}
 
-	return FileLockError::OK;
+	return FileLockStatus::OK;
 }
 
-FileLockError linuxFileLock::flUnlock() {
+FileLockStatus linuxFileLock::flUnlock() {
 	if (fd != -1) {
 		struct flock fl;
 		fl.l_type = F_UNLCK;
@@ -50,12 +50,12 @@ FileLockError linuxFileLock::flUnlock() {
 		if (fcntl(fd, F_SETLKW, &fl) == -1) {
 			close(fd);
 			std::cerr << "fcntl Unlock Error: " << strerror(errno) << std::endl;
-			return FileLockError::FAILED_TO_UNLOCK;
+			return FileLockStatus::FAILED_TO_UNLOCK;
 		}
 
 		close(fd);
 		fd = -1;
 	}
-	return FileLockError::OK;
+	return FileLockStatus::OK;
 }
 #endif

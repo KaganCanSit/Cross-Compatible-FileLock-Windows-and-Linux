@@ -13,8 +13,8 @@
 class windowsFileLock : public IFileLock {
 public:
 	windowsFileLock(const std::string& filePath);
-	FileLockError flLock() override;
-	FileLockError flUnlock() override;
+	FileLockStatus flLock() override;
+	FileLockStatus flUnlock() override;
 
 private:
 	HANDLE handle;

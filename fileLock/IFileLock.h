@@ -8,7 +8,7 @@
 #define FILELOCK_H
 
 // Error Codes Defines
-enum FileLockError {
+enum FileLockStatus {
 	OK = 0,                   // File Lock Operation Successful
 	FILE_COULD_NOT_BE_OPENED, // Failed to Lock File Open
 	ALREADY_LOCKED,           // File Lock Already Locked
@@ -19,8 +19,8 @@ enum FileLockError {
 class IFileLock { //Interface File Lock
 public:
 
-	virtual FileLockError flLock() = 0;		//File Lock Lock
-	virtual FileLockError flUnlock() = 0;	//File Lock Unlock
+	virtual FileLockStatus flLock() = 0;		//File Lock Lock
+	virtual FileLockStatus flUnlock() = 0;	//File Lock Unlock
 	virtual ~IFileLock() {};
 };
 

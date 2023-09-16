@@ -6,11 +6,11 @@
 
 windowsFileLock::windowsFileLock(const std::string& filePath) : lockFileName(filePath), handle(INVALID_HANDLE_VALUE) {}
 
-FileLockError windowsFileLock::flLock() {
+FileLockStatus windowsFileLock::flLock() {
 	handle = CreateFileA(lockFileName.c_str(), GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if (handle == INVALID_HANDLE_VALUE) {
 		std::cerr << "CreateFileA error: " << handle << std::endl;
-		return FileLockError::FILE_COULD_NOT_BE_OPENED;
+		return FileLockStatus::FILE_COULD_NOT_BE_OPENED;
 	}
 
 	OVERLAPPED overlapped = { 0 };
@@ -18,24 +18,24 @@ FileLockError windowsFileLock::flLock() {
 		CloseHandle(handle);
 		DWORD errorCode = GetLastError();
 		std::cerr << "The file is used by another process or LockFileEx error: " << errorCode << std::endl;
-		return (errorCode == ERROR_LOCK_VIOLATION) ? FileLockError::ALREADY_LOCKED : FileLockError::FAILED_TO_LOCK;
+		return (errorCode == ERROR_LOCK_VIOLATION) ? FileLockStatus::ALREADY_LOCKED : FileLockStatus::FAILED_TO_LOCK;
 	}
-	return FileLockError::OK;
+	return FileLockStatus::OK;
 }
 
-FileLockError windowsFileLock::flUnlock() {
+FileLockStatus windowsFileLock::flUnlock() {
 	if (handle != INVALID_HANDLE_VALUE) {
 		OVERLAPPED overlapped = { 0 };
 		if (UnlockFileEx(handle, 0, 0, 1, &overlapped) == 0) {
 			CloseHandle(handle);
 			DWORD errorCode = GetLastError();
 			std::cerr << "UnlockFileEx error: " << errorCode << std::endl;
-			return FileLockError::FAILED_TO_UNLOCK;
+			return FileLockStatus::FAILED_TO_UNLOCK;
 		}
 
 		CloseHandle(handle);
 		handle = INVALID_HANDLE_VALUE;
 	}
-	return FileLockError::OK;
+	return FileLockStatus::OK;
 }
 #endif
