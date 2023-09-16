@@ -21,12 +21,12 @@ The primary purpose of using File Lock is to maintain data integrity and securit
 
 As the number of processes and their durations increase, the complexity of using File Lock can also increase. Therefore, it's essential to carefully evaluate your needs and your application's requirements before implementing File Lock.
 
-## Purpose of the Code in This Repository
-The main purpose of the code in this repository is to override "File Lock" operations on an interface for Linux and Windows operating systems. This allows for common calls using ifdef without the need for multiple code branches. You can define specific implementations for different operating systems using IFileLock.cpp. Currently, it's limited to these two operating systems, but it can potentially grow with contributions from other developers.
+## Purpose of Code in This Repository
+The main purpose of the code in this repository is to make "File Locking" operations common through an interface for Linux and Windows operating systems. This allows joint calls without the need to use multiple ifdef. Using IFileLock.cpp you can define specific applications for different operating systems. It's currently limited to these two operating systems, but could potentially grow with contributions from other developers.
 
 **IMPORTANT!**
 
-**The code in this repository is primarily intended for basic use. As it currently stands, if the file specified for file locking is already locked, the operation terminates with an error. It is designed with the assumption of a single process continuing. While the flags used in defining FileLock can be altered for different use cases, it does not provide complex handling for diverse situations.**
+**The code in this repository is primarily for basic use. As it stands now, if the file specified for file locking is already locked, the process terminates with an error. It is designed with the assumption that a single process is ongoing. The flags used to define FileLock can be modified for use cases.**
 
 ## Documentation for File Lock Usage in Windows and Linux
 For file locking operations in Windows operating systems, you need to include the "windows.h" header. For general usage methods and information about this library, please refer to the following documentation.
@@ -36,6 +36,7 @@ For file locking operations in Windows operating systems, you need to include th
 For file locking operations in Linux operating systems, several headers need to be defined. Both the older Flock and the newer Fcntl methods are preferred. For general usage methods and information about this library, please refer to the following documentation.
 
 [Linux Documentation - GNU.org](https://www.gnu.org/software/libc/manual/html_node/File-Locks.html)
+
 [Linux Documentation - Man Page](https://man7.org/linux/man-pages/man2/fcntl.2.html)
 
 ## Requirements
@@ -61,11 +62,12 @@ I have made an effort to create this repository thoughtfully, but there may stil
 
 If you would like to contribute, you can follow these steps:
 
-Fork this repository and create a local copy.
-Make your changes in your local copy.
-Commit your changes to a branch.
-Push your branch to GitHub.
-Open a Pull Request and wait for your changes to be incorporated into the project.
+- Fork this repository and create a local copy.
+- Make your changes in your local copy.
+- Commit your changes to a branch.
+- Push your branch to GitHub.
+- Open a Pull Request and wait for your changes to be incorporated into the project.
+
 You can also report existing issues by creating an issue, which can help others identify and fix them.
 
 ## License
