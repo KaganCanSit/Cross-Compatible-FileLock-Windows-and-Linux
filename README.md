@@ -24,6 +24,8 @@ As the number of processes and their durations increase, the complexity of using
 ## Purpose of Code in This Repository
 The main purpose of the code in this repository is to make "File Locking" operations common through an interface for Linux and Windows operating systems. This allows joint calls without the need to use multiple ifdef. Using IFileLock.cpp you can define specific applications for different operating systems. It's currently limited to these two operating systems, but could potentially grow with contributions from other developers.
 
+![Basic Diagram](readmeImage/basicDiagram.drawio.png)
+
 **IMPORTANT!**
 
 **The code in this repository is primarily for basic use. As it stands now, if the file specified for file locking is already locked, the process terminates with an error. It is designed with the assumption that a single process is ongoing. The flags used to define FileLock can be modified for use cases.**
@@ -48,7 +50,7 @@ For file locking operations in Linux operating systems, several headers need to 
 To use the code, simply import the header and cpp files into your project as needed. If you want to try the basic example on the main function, you can follow these steps:
 
 ```shell
-git clone https://github.com/KaganCanSit/fileLock--Linux-and-Windows
+git clone https://github.com/KaganCanSit/Cross-Compatible-FileLock-Windows-and-Linux
 cd "Downloads Project Folder"
 cmake .
 make
