@@ -11,7 +11,6 @@ std::string fileDirectory = "C:\\Users\\KaganCanSit\\Desktop\\fileLock.txt";
 std::string fileDirectory = "/home/kagancansit/Desktop/fileLock.txt";
 #endif
 
-
 void sleepFunc() {
 #if defined(__linux) || defined(__linux__)
 	sleep(5);
@@ -21,14 +20,11 @@ void sleepFunc() {
 }
 
 int main(int argc, char** argv) {
-
-	int ret = 0;
-
 	std::unique_ptr<IFileLock> fileLock = fileLockFactory::createFileLock(fileDirectory);
 
-	ret = fileLock->flLock();
+	int ret = fileLock->flLock();
 	if (ret != static_cast<int>(FileLockStatus::OK)) {
-		std::cout << "File Lock Create Failed! Error Code: " << ret << std::endl;
+		std::cerr << "File Lock Create Failed! Error Code: " << ret << std::endl;
 		return -1;
 	}
 
@@ -38,7 +34,7 @@ int main(int argc, char** argv) {
 
 	ret = fileLock->flUnlock();
 	if (ret != static_cast<int>(FileLockStatus::OK)) {
-		std::cout << "File Lock Unlock Failed! Error Code: " << ret << std::endl;
+		std::cerr << "File Lock Unlock Failed! Error Code: " << ret << std::endl;
 		return -1;
 	}
 	std::cout << "File Lock Unlock Success" << std::endl;

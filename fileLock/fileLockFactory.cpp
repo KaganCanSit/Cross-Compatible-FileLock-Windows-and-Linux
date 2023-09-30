@@ -8,4 +8,3 @@ std::unique_ptr<IFileLock> fileLockFactory::createFileLock(const std::string& fi
     return std::make_unique<windowsFileLock>(filePath);
 #endif
 }
- 
