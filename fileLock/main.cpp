@@ -1,38 +1,39 @@
 #include <iostream>
 #include <string>
-#include "windowsFileLock.h"
-#include "linuxFileLock.h"
+#include "fileLockFactory.h"
+
+std::string fileDirectory = "C:\\Users\\KaganCanSit\\Desktop\\fileLock.txt";
 
 #if defined(__linux) || defined(__linux__)
 #include <memory>
 #include <unistd.h>
+
+std::string fileDirectory = "/home/kagancansit/Desktop/fileLock.txt";
 #endif
+
+
+void sleepFunc() {
+#if defined(__linux) || defined(__linux__)
+	sleep(5);
+#elif defined(_WIN32) || defined(_WIN64)
+	Sleep(5000);
+#endif
+}
 
 int main(int argc, char** argv) {
 
 	int ret = 0;
-	std::shared_ptr<IFileLock> fileLock;
 
-#if defined(__linux) || defined(__linux__)
-	std::string fileDirectory = "/home/kagancansit/Desktop/fileLock.txt";
-	fileLock = std::make_shared<linuxFileLock>(fileDirectory);
-#elif defined(_WIN32) || defined(_WIN64)
-	std::string fileDirectory = "C:\\Users\\KaganCanSit\\Desktop\\fileLock.txt";
-	fileLock = std::make_shared<windowsFileLock>(fileDirectory);
-#endif
+	std::unique_ptr<IFileLock> fileLock = fileLockFactory::createFileLock(fileDirectory);
 
 	ret = fileLock->flLock();
 	if (ret != static_cast<int>(FileLockStatus::OK)) {
 		std::cout << "File Lock Create Failed! Error Code: " << ret << std::endl;
 		return -1;
 	}
-	std::cout << "File Lock Success" << std::endl;
 
-#if defined(__linux) || defined(__linux__)
-	sleep(5);
-#elif defined(_WIN32) || defined(_WIN64)
-	Sleep(5000);
-#endif
+	std::cout << "File Lock Success" << std::endl;
+	sleepFunc();
 	std::cout << "Sleep 5 Seconds Done" << std::endl;
 
 	ret = fileLock->flUnlock();
