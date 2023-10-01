@@ -2,13 +2,12 @@
 #include <string>
 #include "fileLockFactory.h"
 
-std::string fileDirectory = "C:\\Users\\KaganCanSit\\Desktop\\fileLock.txt";
-
 #if defined(__linux) || defined(__linux__)
 #include <memory>
 #include <unistd.h>
-
 std::string fileDirectory = "/home/kagancansit/Desktop/fileLock.txt";
+#elif defined(_WIN32) || defined(_WIN64)
+std::string fileDirectory = "C:\\Users\\KaganCanSit\\Desktop\\fileLock.txt";
 #endif
 
 void sleepFunc() {
