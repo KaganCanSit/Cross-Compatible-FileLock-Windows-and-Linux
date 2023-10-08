@@ -43,3 +43,7 @@ private/
 
 /fileLock/build/
 /fileLock/dist/
+
+#draw.io
+*.drawio
+*.drawio.bkp
