@@ -1,12 +1,12 @@
-#include "windowsFileLock.h"
+#include "WindowsFileLock.h"
 #include <iostream>
 
 #if defined(_WIN32) || defined(_WIN64)
 #include <windows.h>
 
-windowsFileLock::windowsFileLock(const std::string& filePath) : lockFileName(filePath), fd(INVALID_HANDLE_VALUE) {}
+WindowsFileLock::WindowsFileLock(const std::string& filePath) : lockFileName(filePath), fd(INVALID_HANDLE_VALUE) {}
 
-FileLockStatus windowsFileLock::flLock() {
+FileLockStatus WindowsFileLock::flLock() {
 	fd = CreateFileA(lockFileName.c_str(), GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if (fd == INVALID_HANDLE_VALUE) {
 		std::cerr << "CreateFileA error: " << fd << std::endl;
@@ -23,7 +23,7 @@ FileLockStatus windowsFileLock::flLock() {
 	return FileLockStatus::OK;
 }
 
-FileLockStatus windowsFileLock::flUnlock() {
+FileLockStatus WindowsFileLock::flUnlock() {
 	if (fd != INVALID_HANDLE_VALUE) {
 		OVERLAPPED overlapped = { 0 };
 		if (UnlockFileEx(fd, 0, 0, 1, &overlapped) == 0) {

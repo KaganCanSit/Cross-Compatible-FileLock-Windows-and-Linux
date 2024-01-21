@@ -12,9 +12,10 @@
 #if defined(__linux) || defined(__linux__)
 #include <sys/file.h>
 
-class linuxFileLock : public IFileLock {
+
+class LinuxFileLock : public IFileLock {
 public:
-	linuxFileLock(const std::string& filePath);
+	explicit LinuxFileLock(const std::string& filePath);
 	FileLockStatus flLock() override;
 	FileLockStatus flUnlock() override;
 
