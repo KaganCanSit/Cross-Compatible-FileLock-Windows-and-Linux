@@ -5,13 +5,13 @@
 */
 
 #include <memory>
+#include <string>
 
 #include "IFileLock.h"
-#include "linuxFileLock.h"
-#include "windowsFileLock.h"
 
-class fileLockFactory
+class FileLockFactory
 {
 public:
-	static std::unique_ptr<IFileLock> createFileLock(const std::string& filePath);
+	virtual std::unique_ptr<IFileLock> createFileLock(const std::string& filePath) = 0;
+	virtual ~FileLockFactory() = default;
 };

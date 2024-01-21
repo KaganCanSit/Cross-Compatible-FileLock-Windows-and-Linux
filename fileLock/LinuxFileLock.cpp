@@ -1,4 +1,4 @@
-#include "linuxFileLock.h"
+#include "LinuxFileLock.h"
 
 #include <iostream>
 
@@ -10,10 +10,11 @@
 #include <cstring>
 #include <cerrno>
 
-linuxFileLock::linuxFileLock(const std::string& filePath) : lockFileName(filePath), fd(-1) {
+
+LinuxFileLock::LinuxFileLock(const std::string& filePath) : lockFileName(filePath), fd(-1) {
 }
 
-FileLockStatus linuxFileLock::flLock() {
+FileLockStatus LinuxFileLock::flLock() {
 	struct flock fl;
 	fl.l_type = F_WRLCK;
 	fl.l_start = 0;
@@ -39,7 +40,7 @@ FileLockStatus linuxFileLock::flLock() {
 	return FileLockStatus::OK;
 }
 
-FileLockStatus linuxFileLock::flUnlock() {
+FileLockStatus LinuxFileLock::flUnlock() {
 	if (fd != -1) {
 		struct flock fl;
 		fl.l_type = F_UNLCK;
