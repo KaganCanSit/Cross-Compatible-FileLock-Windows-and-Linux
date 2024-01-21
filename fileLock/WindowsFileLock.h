@@ -5,11 +5,13 @@
 * https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-lockfile
 */
 #include <string>
-#include <windows.h>
 
 #include "IFileLock.h"
 
 #if defined(_WIN32) || defined(_WIN64)
+
+#include <windows.h>
+
 class WindowsFileLock : public IFileLock {
 public:
 	explicit WindowsFileLock(const std::string& filePath);
