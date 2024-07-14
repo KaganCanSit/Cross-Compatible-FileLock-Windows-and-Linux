@@ -80,7 +80,7 @@ To use the code, simply import the header and cpp files into your project as nee
 ## Contribution
 I have made an effort to create this repository thoughtfully, but errors may still occur. Please feel free to contribute and give constructive feedback.
 
-If you would like to contribute, you can follow the [Contributing](CONTRIBUTING.md) instructions.
+If you would like to contribute, you can follow the [CONTRIBUTING](CONTRIBUTING.md) instructions.
 
 ## License
 This project is licensed under the MIT License. For details, see the [LICENSE](https://github.com/KaganCanSit/Cross-Compatible-FileLock-Windows-and-Linux/blob/main/LICENSE)

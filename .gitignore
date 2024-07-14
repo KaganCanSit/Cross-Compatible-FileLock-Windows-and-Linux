@@ -41,8 +41,8 @@ private/
 # Temp
 .dep.inc
 
-/fileLock/build/
-/fileLock/dist/
+# Build folder
+/build
 
 #draw.io
 *.drawio
