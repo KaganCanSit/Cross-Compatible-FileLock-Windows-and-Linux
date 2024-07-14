@@ -37,12 +37,15 @@
 # IDE Specific folder
 nbproject/
 private/
+.vscode
 
 # Temp
 .dep.inc
 
 # Build folder
-/build
+build
+
+
 
 #draw.io
 *.drawio
