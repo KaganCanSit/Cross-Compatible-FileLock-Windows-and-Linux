@@ -3,6 +3,7 @@
 
 #include <memory>
 #include <string>
+
 #include "FileLockStrategy.h"
 
 class FileLockFactory {

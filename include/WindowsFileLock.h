@@ -9,9 +9,9 @@
 
 #if defined(_WIN32) || defined(_WIN64)
 #include <string>
-#include "FileLockStrategy.h"
-
 #include <windows.h>
+
+#include "FileLockStrategy.h"
 
 class WindowsFileLock : public FileLockStrategy {
 public:

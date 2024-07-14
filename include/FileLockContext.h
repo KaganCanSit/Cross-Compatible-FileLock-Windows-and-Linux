@@ -2,6 +2,7 @@
 #define FILELOCKCONTEXT_H
 
 #include <memory>
+
 #include "FileLockStrategy.h"
 
 // Strategy Pattern - Context Class

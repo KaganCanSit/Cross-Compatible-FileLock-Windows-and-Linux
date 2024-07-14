@@ -1,6 +1,5 @@
 #include "UnixFileLock.h"
 #include "WindowsFileLock.h"
-
 #include "FileLockFactory.h"
 
 std::unique_ptr<FileLockStrategy> FileLockFactory::createFileLock(const std::string& filePath) {

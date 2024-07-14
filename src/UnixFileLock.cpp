@@ -1,4 +1,5 @@
-#include "../include/UnixFileLock.h"
+#include <iostream>
+#include "UnixFileLock.h"
 
 #if defined(__linux) || defined(__linux__)
 
@@ -11,7 +12,10 @@ UnixFileLock::~UnixFileLock() {
 
 bool UnixFileLock::lock() {
     fileDescriptor = open(filePath.c_str(), O_RDWR | O_CREAT, 0666);
-    if (fileDescriptor == -1) return false;
+    if (fileDescriptor == -1) {
+        std::cerr << "Failed to open the file: " << filePath << std::endl;
+        return false;
+    }
     return (flock(fileDescriptor, LOCK_EX) == 0);
 }
 
