@@ -9,15 +9,14 @@
 #ifndef UNIXFILELOCK_H
 #define UNIXFILELOCK_H
 
+#if defined(__linux) || defined(__linux__)
+
 #include <fcntl.h>
 #include <string>
-
-#include "FileLockStrategy.h"
-
-#if defined(__linux) || defined(__linux__)
 #include <unistd.h>
 #include <sys/file.h>
-#endif
+
+#include "FileLockStrategy.h"
 
 class UnixFileLock : public FileLockStrategy {
 public:
@@ -30,5 +29,6 @@ private:
     std::string filePath;
     int fileDescriptor;
 };
+#endif // __linux
 
 #endif // UNIXFILELOCK_H

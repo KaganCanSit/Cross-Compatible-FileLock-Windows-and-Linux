@@ -2,7 +2,8 @@
 
 #if defined(_WIN32) || defined(_WIN64)
 
-WindowsFileLock::WindowsFileLock(const std::string& filePath) : filePath(filePath), fileHandle(INVALID_HANDLE_VALUE) {}
+WindowsFileLock::WindowsFileLock(const std::string& filePath)
+ : filePath(filePath), fileHandle(INVALID_HANDLE_VALUE) {}
 
 WindowsFileLock::~WindowsFileLock() {
     unlock();

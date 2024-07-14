@@ -8,8 +8,8 @@ include_directories(include)
 
 # Source files
 set(SOURCES
-    src/FileLock.cpp
     src/main.cpp
+    src/FileLockFactory.cpp
 )
 
 # Platform-specific sources

@@ -6,13 +6,12 @@
 #ifndef FILELOCKSTRATEGY_H
 #define FILELOCKSTRATEGY_H
 
+// Strategy Pattern - Strategy Interface
 class FileLockStrategy {
 public:
     virtual ~FileLockStrategy() = default;
     virtual bool lock() = 0;
     virtual void unlock() = 0;
-private:
-    std::string filePart;
 };
 
 #endif // FILELOCKSTRATEGY_H
